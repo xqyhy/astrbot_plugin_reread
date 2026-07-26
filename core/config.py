@@ -74,6 +74,7 @@ class BanConfig(ConfigNode):
 
 class PluginConfig(ConfigNode):
     group_whitelist: list[str]
+    blocked_words: list[str]
     need_different: bool
     thresholds: dict[str, int]
     reread_prob: float
