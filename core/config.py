@@ -74,6 +74,7 @@ class BanConfig(ConfigNode):
 
 class PluginConfig(ConfigNode):
     group_whitelist: list[str]
+    blocked_words: list[str]
     need_different: bool
     thresholds: dict[str, int]
     reread_prob: float
@@ -83,6 +84,11 @@ class PluginConfig(ConfigNode):
 
     def __init__(self, cfg: AstrBotConfig):
         super().__init__(cfg)
+        self.blocked_words = [
+            word
+            for word in (self.blocked_words or [])
+            if isinstance(word, str) and word
+        ]
         self.supported_type = list(self.thresholds.keys())
         self.window_sizes = {
             seg_type: self.get_threshold(seg_type) for seg_type in self.supported_type

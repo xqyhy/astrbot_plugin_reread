@@ -1,6 +1,7 @@
 from astrbot.api.event import filter
 from astrbot.api.star import Context, Star
 from astrbot.core import AstrBotConfig
+from astrbot.core.message.components import Plain
 from astrbot.core.platform import AstrMessageEvent
 from astrbot.core.star.filter.event_message_type import EventMessageType
 
@@ -31,6 +32,11 @@ class RereadPlugin(Star):
         seg_type = str(seg.type).split(".")[-1]
 
         if not self.cfg.is_supported_type(seg_type):
+            return
+
+        if isinstance(seg, Plain) and any(
+            word in seg.text for word in self.cfg.blocked_words
+        ):
             return
 
         group_id = event.get_group_id()

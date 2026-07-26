@@ -5,6 +5,12 @@
         "hint": "仅在这些群里启用复读功能，留空表示全部群聊启用",
         "default": []
     },
+    "blocked_words": {
+        "description": "文本屏蔽词",
+        "type": "list",
+        "hint": "文本消息包含任一屏蔽词时不参与复读检测，避免机器人跟读敏感词",
+        "default": []
+    },
     "need_different": {
         "description": "多人复读检测",
         "type": "bool",
@@ -132,7 +138,7 @@
                 "description": "禁言提示词",
                 "type": "text",
                 "hint": "禁言成功后发送的提示词，支持 {user_name}、{user_id}、{group_id}、{ban_duration}、{repeat_count}",
-                "default": "{user_name} 复读过头了，先禁言 {ban_duration} 秒。"
+                "default": "{user_name}复读过头了，先禁言{ban_duration}秒"
             }
         }
     }
