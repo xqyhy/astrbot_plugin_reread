@@ -81,6 +81,7 @@ class PluginConfig(ConfigNode):
     follow: FollowConfig
     interrupt: InterruptConfig
     ban: BanConfig
+    skip_result_decoration: bool
 
     def __init__(self, cfg: AstrBotConfig):
         super().__init__(cfg)
